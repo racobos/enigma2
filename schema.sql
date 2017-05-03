@@ -10,9 +10,3 @@ create table entries (
   vplsID text,
   customerName text not null
 );
-
-insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values ('PE1','PE2','1000','Gi0/0','Gi0/0',100,'VLAN100','Claro');
-insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values ('PE1','PE2','1000','Gi0/0','Gi0/0',100,'VLAN100','Claro');
-insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values ('PE1','PE2','1000','Gi0/0','Gi0/0',100,'VLAN100','Claro');
-insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values ('PE1','PE2','1000','Gi0/0','Gi0/0',100,'VLAN100','Claro');
-insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values ('PE1','PE2','1000','Gi0/0','Gi0/0',100,'VLAN100','Claro');

@@ -2,21 +2,32 @@
 {% block body %}
 
 <div class="content">
-  <h1>Devices</h1>
+  <h1>Services</h1>
   <br>
 
 <div class="tables">
+
+  <form action="{{url_for('applyFilter')}}" method='POST'>
+ <table>
+   <tr>
+     <td><input type="text" name="filter"  placeholder="Ex:vplsID = 'VLAN100'"></td>
+     <td><input type="submit" value="Apply Filter"></td>
+   </tr>
+ </table>
+ </form>
+
+
 <table style="display: table;" id="list">
   <tr>
-    <th>ID</th>
-    <th>Origin Node</th>
-    <th>Destination Node</th>
-    <th>Pseudowire ID</th>
-    <th>Local Interface</th>
-    <th>Remote Interface</th>
-    <th>VLAN ID</th>
-    <th>VPLS ID</th>
-    <th>Customer Name</th>
+    <th>id</th>
+    <th>originNode</th>
+    <th>destinationNode</th>
+    <th>pwID</th>
+    <th>localInterface</th>
+    <th>remoteInterface</th>
+    <th>vlanID</th>
+    <th>vplsID</th>
+    <th>customerName</th>
   </tr>
   {% for entry in entries %}
   <tr>

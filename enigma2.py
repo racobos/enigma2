@@ -64,20 +64,62 @@ def list():
         error = "Could not complete query: "+e.args[0]
         return render_template('list.html', error = error)
 
-@app.route('/create')
+@app.route('/create', methods=['GET','POST'])
 def create():
-    print "Hello World --create"
-    return render_template('create.html')
+    if request.method == 'GET':
+        return render_template('create.html')
+    elif request.method == 'POST':
+        try:
+            db = get_db()
+            # vals = [request.form['originNode'], request.form['destinationNode'],request.form['pwId'],request.form['localInterface'],request.form['remoteInterface'],request.form['vlan'],request.form['vplsId']
+            db.execute('insert into entries (originNode, destinationNode, pwID, localInterface, remoteInterface, vlanID, vplsID, customerName) values (?,?,?,?,?,?,?,?)',[request.form['originNode'], request.form['destinationNode'],request.form['pwID'],request.form['localInterface'],request.form['remoteInterface'],request.form['vlanID'],request.form['vplsID'],request.form['customerName']])
+            db.commit()
+            if  request.form['vplsID'] == '':
+                print 'Crear Servicio como PW'
+                # createPw(vals)
+            else:
+                print 'Crear Servicio como VPLS'
+                # createVpls(vals)
+
+            flash('Created successfully')
+            return redirect(url_for('list'))
+        except sqlite3.Error as e:
+            error = "Could not create the service: "+e.args[0]
+            return render_template('create.html', error = error)
 
 @app.route('/update')
 def update():
     print "Hello World --update"
     return render_template('update.html')
 
-@app.route('/delete')
+@app.route('/delete', methods=['GET','POST'])
 def delete():
-    print "Hello World --delete"
-    return render_template('delete.html')
+    if request.method == 'GET':
+        return render_template('delete.html')
+    elif request.method == 'POST':
+        try:
+            db = get_db()
+            db.execute('delete from entries where '+ request.form['filter'])
+            db.commit()
+            flash('Deleted successfully')
+            return redirect(url_for('list'))
+        except sqlite3.Error as e:
+            error = "Could not delete service: "+e.args[0]
+            return render_template('delete.html', error = error)
+
+
+@app.route('/applyFilter', methods=['POST'])
+def applyFilter():
+    try:
+        db = get_db()
+        entries = db.execute('select * from entries where '+ request.form['filter']).fetchall()
+        return render_template('list.html', entries = entries)
+    except sqlite3.Error as e:
+        error = "Could not complete query: "+e.args[0]
+        return render_template('list.html', error = error)
+
+
+
 
 
 #    try:

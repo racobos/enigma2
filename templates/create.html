@@ -1,5 +1,61 @@
 {% extends "layout.html" %}
 {% block body %}
 
+<div class="content">
+  <h1>Create a Service</h1>
+  <br>
 
+  <form action="{{url_for('create')}}" method="POST">
+
+<table>
+
+  <tr>
+    <td>Origin Node:</td>
+    <td><input type='text' name='originNode'></td>
+  </tr>
+
+  <tr>
+    <td>Destination Node:</td>
+    <td><input type='text' name='destinationNode'></td>
+  </tr>
+
+  <tr>
+    <td>Pseudowire ID:</td>
+    <td><input type='text' name='pwID'></td>
+  </tr>
+
+  <tr>
+    <td>Local Interface:</td>
+    <td><input type='text' name='localInterface'></td>
+  </tr>
+
+  <tr>
+    <td>Remote Interface:</td>
+    <td><input type='text' name='remoteInterface'></td>
+  </tr>
+
+  <tr>
+    <td>VLAN:</td>
+    <td><input type='text' name='vlanID'></td>
+  </tr>
+
+  <tr>
+    <td>VPLS ID (Name):</td>
+    <td><input type='text' name='vplsID'></td>
+  </tr>
+
+  <tr>
+    <td>Customer Name:</td>
+    <td><input type='text' name='customerName'></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><input type='submit' value='Create'></td>
+  </tr>
+
+</table>
+
+</form>
+</div>
 {% endblock %}
