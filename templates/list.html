@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="content">
+  <h1>Devices</h1>
+  <br>
+
+<div class="tables">
+<table style="display: table;" id="list">
+  <tr>
+    <th>ID</th>
+    <th>Origin Node</th>
+    <th>Destination Node</th>
+    <th>Pseudowire ID</th>
+    <th>Local Interface</th>
+    <th>Remote Interface</th>
+    <th>VLAN ID</th>
+    <th>VPLS ID</th>
+    <th>Customer Name</th>
+  </tr>
+  {% for entry in entries %}
+  <tr>
+    <td>{{ entry.id }}</td>
+    <td>{{ entry.originNode }}</td>
+    <td>{{ entry.destinationNode }}</td>
+    <td>{{ entry.pwID }}</td>
+    <td>{{ entry.localInterface }}</td>
+    <td>{{ entry.remoteInterface }}</td>
+    <td>{{ entry.vlanID }}</td>
+    <td>{{ entry.vplsID }}</td>
+      <td>{{ entry.customerName }}</td>
+  </tr>
+  {% endfor %}
+
+</table>
+</div>
+</div>
+
+{% endblock %}
